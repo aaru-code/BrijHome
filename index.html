@@ -1,0 +1,676 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   BrijHome Property
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;display=swap" rel="stylesheet"/>
+  <style>
+   body {
+      font-family: "Inter", sans-serif;
+    }
+  </style>
+ </head>
+ <body class="relative min-h-screen bg-white flex flex-col">
+  <header class="fixed top-0 left-0 right-0 bg-white z-40 shadow-sm">
+   <nav class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+    <div class="font-extrabold text-lg select-none">
+     BrijHome
+    </div>
+    <ul class="hidden md:flex space-x-10 text-base font-normal">
+     <li>
+      <a class="text-pink-400 hover:text-pink-400" href="/home.html">
+       Home
+      </a>
+     </li>
+     <li>
+      <a class="text-black hover:text-pink-400" href="/about.html">
+       About
+      </a>
+     </li>
+     <li>
+      <a class="text-black hover:text-pink-400" href="/agent.html">
+       Agent
+      </a>
+     </li>
+     <li>
+      <a class="text-black hover:text-pink-400" href="/service.html">
+       Services
+      </a>
+     </li>
+     <li>
+      <a class="text-black hover:text-pink-400" href="/properties.html">
+       Properties
+      </a>
+     </li>
+     <li>
+      <a class="text-black hover:text-pink-400" href="/blog.html">
+       Blog
+      </a>
+     </li>
+     <li>
+      <a class="text-black hover:text-pink-400" href="/contact.html">
+       Contact
+      </a>
+     </li>
+    </ul>
+   </nav>
+  </header>
+  <main class="pt-24 flex-grow">
+   <!-- Hero Section with background image -->
+   <div class="relative max-w-7xl mx-auto px-6">
+    <img alt="White modern houses with red roofs and white fences on a street under a cloudy sky" class="w-full h-[600px] object-cover object-top rounded-b-3xl" height="600" src="https://storage.googleapis.com/a1aa/image/344b8a36-3d0d-4e09-37f9-7fd55b31d936.jpg" width="1920"/>
+    <div class="absolute inset-0 flex flex-col items-center justify-center text-center px-4 bg-gradient-to-b from-white/70 to-white/90 rounded-b-3xl" style="top: 0; left: 0; right: 0; bottom: 0;">
+     <h1 class="text-black font-normal text-[56px] leading-[64px] max-w-4xl" style="font-feature-settings: 'liga' off;">
+      The Simplest
+      <br/>
+      Way to Find Property
+     </h1>
+     <p class="mt-6 max-w-3xl text-black/70 text-lg font-normal leading-7">
+      A small river named Duden flows by their place and supplies it with
+          the necessary regelialia. It is a paradisematic country, in which
+          roasted parts
+     </p>
+     <!-- Advanced Search Filters -->
+     <form aria-label="Advanced property search" class="mt-12 w-full max-w-5xl bg-white rounded-full shadow-lg flex flex-wrap items-center gap-4 px-6 py-4" role="search">
+      <input aria-label="Search location" class="flex-grow min-w-[150px] px-4 py-3 text-lg rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-400" id="search-location" placeholder="Search location" type="search"/>
+      <select aria-label="Property type" class="min-w-[140px] px-4 py-3 text-lg rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-400" id="property-type">
+       <option>
+        Property type
+       </option>
+       <option>
+        Apartment
+       </option>
+       <option>
+        House
+       </option>
+       <option>
+        Land
+       </option>
+       <option>
+        Commercial
+       </option>
+      </select>
+      <select aria-label="Price range" class="min-w-[140px] px-4 py-3 text-lg rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-400" id="price-range">
+       <option>
+        Price range
+       </option>
+       <option>
+        Under Rs 100k
+       </option>
+       <option>
+        Rs100k - Rs 500k
+       </option>
+       <option>
+        Rs 500k - Rs 1M
+       </option>
+       <option>
+        Over Rs 1M
+       </option>
+      </select>
+      <select aria-label="Bedrooms" class="min-w-[100px] px-4 py-3 text-lg rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-400" id="bedrooms">
+       <option>
+        Bedrooms
+       </option>
+       <option>
+        1+
+       </option>
+       <option>
+        2+
+       </option>
+       <option>
+        3+
+       </option>
+       <option>
+        4+
+       </option>
+      </select>
+      <select aria-label="Bathrooms" class="min-w-[100px] px-4 py-3 text-lg rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-400" id="bathrooms">
+       <option>
+        Bathrooms
+       </option>
+       <option>
+        1+
+       </option>
+       <option>
+        2+
+       </option>
+       <option>
+        3+
+       </option>
+       <option>
+        4+
+       </option>
+      </select>
+      <div class="flex items-center space-x-2 min-w-[140px]">
+       <input checked="" class="accent-pink-400" id="for-sale" name="sale-rent" type="radio" value="sale"/>
+       <label class="text-gray-700 font-medium cursor-pointer" for="for-sale">
+        For Sale
+       </label>
+       <input class="accent-pink-400" id="for-rent" name="sale-rent" type="radio" value="rent"/>
+       <label class="text-gray-700 font-medium cursor-pointer" for="for-rent">
+        For Rent
+       </label>
+      </div>
+      <button class="min-w-[140px] bg-pink-400 text-white rounded-full px-5 py-3 font-semibold hover:bg-pink-500 transition flex items-center justify-center" id="map-view-btn" type="button">
+       <i class="fas fa-map-marked-alt mr-2">
+       </i>
+       Map View
+      </button>
+      <button aria-label="Search" class="bg-pink-400 px-8 flex items-center justify-center rounded-full text-white text-xl hover:bg-pink-500 transition" id="search-btn" type="submit">
+       <i class="fas fa-search">
+       </i>
+      </button>
+     </form>
+    </div>
+   </div>
+   <!-- Featured Listings -->
+   <section class="max-w-7xl mx-auto px-6 mt-20">
+    <h2 class="text-3xl font-bold mb-8 text-center">
+     Featured Listings
+    </h2>
+    <div aria-label="Featured properties" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="featured-listings">
+     <!-- Property 1 -->
+     <article class="bg-white rounded-xl shadow-md overflow-hidden flex flex-col" tabindex="0" data-type="Apartment" data-price="350000" data-bedrooms="2" data-bathrooms="2" data-sale="sale">
+      <img alt="Modern apartment building exterior with balconies and large windows" class="w-full h-48 object-cover" height="400" src="https://storage.googleapis.com/a1aa/image/b52a47b1-4b13-4e9c-99be-50e103326f6c.jpg" width="600"/>
+      <div class="p-4 flex flex-col flex-grow">
+       <h3 class="text-xl font-semibold mb-1">
+        Rs 350,000
+       </h3>
+       <p class="text-gray-600 mb-4">
+        new ashok nagar, delhi
+       </p>
+       <button aria-label="View details of Modern Apartment" class="mt-auto bg-pink-400 text-white rounded-full py-2 px-4 hover:bg-pink-500 transition self-start">
+        Quick View
+       </button>
+      </div>
+     </article>
+     <!-- Property 2 -->
+     <article class="bg-white rounded-xl shadow-md overflow-hidden flex flex-col" tabindex="0" data-type="House" data-price="550000" data-bedrooms="3" data-bathrooms="2" data-sale="sale">
+      <img alt="Cozy house front with garden and driveway" class="w-full h-48 object-cover" height="400" src="https://storage.googleapis.com/a1aa/image/5697d3db-b5c6-442d-b0cf-47931f7c9154.jpg" width="600"/>
+      <div class="p-4 flex flex-col flex-grow">
+       <h3 class="text-xl font-semibold mb-1">
+        Rs 550,000
+       </h3>
+       <p class="text-gray-600 mb-4">
+       okla, delhi
+       </p>
+       <button aria-label="View details of Cozy House" class="mt-auto bg-pink-400 text-white rounded-full py-2 px-4 hover:bg-pink-500 transition self-start">
+        Quick View
+       </button>
+      </div>
+     </article>
+     <!-- Property 3 -->
+     <article class="bg-white rounded-xl shadow-md overflow-hidden flex flex-col" tabindex="0" data-type="Commercial" data-price="1200000" data-bedrooms="0" data-bathrooms="4" data-sale="sale">
+      <img alt="Modern commercial building with glass facade" class="w-full h-48 object-cover" height="400" src="https://storage.googleapis.com/a1aa/image/ba51be9e-29a2-42a4-442a-1f5058e79dd3.jpg" width="600"/>
+      <div class="p-4 flex flex-col flex-grow">
+       <h3 class="text-xl font-semibold mb-1">
+        Rs 1,200,000
+       </h3>
+       <p class="text-gray-600 mb-4">
+        Parikshit vihar, delhi
+       </p>
+       <button aria-label="View details of Commercial Building" class="mt-auto bg-pink-400 text-white rounded-full py-2 px-4 hover:bg-pink-500 transition self-start">
+        Quick View
+       </button>
+      </div>
+     </article>
+    </div>
+   </section>
+   <!-- Testimonials / Reviews -->
+   <section class="max-w-7xl mx-auto px-6 mt-20">
+    <h2 class="text-3xl font-bold mb-8 text-center">
+     What Our Clients Say
+    </h2>
+    <div aria-label="Client testimonials" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+     <!-- Testimonial 1 -->
+     <blockquote class="bg-white rounded-xl shadow-md p-6 flex flex-col items-center text-center" tabindex="0">
+      <img alt="Photo of client smiling woman with short hair" class="rounded-full mb-4" height="80" src="https://storage.googleapis.com/a1aa/image/893d1f9f-e7e9-46ee-2a26-c3d97631865a.jpg" width="80"/>
+      <p class="mb-4 italic text-gray-700">
+       "BrijHome made buying my first home so easy and stress-free. Highly
+            recommend!"
+      </p>
+      <div class="text-yellow-400">
+       <i class="fas fa-star">
+       </i>
+       <i class="fas fa-star">
+       </i>
+       <i class="fas fa-star">
+       </i>
+       <i class="fas fa-star">
+       </i>
+       <i class="fas fa-star-half-alt">
+       </i>
+      </div>
+      <footer class="mt-3 font-semibold text-gray-900">
+      Sazida
+      </footer>
+     </blockquote>
+     <!-- Testimonial 2 -->
+     <blockquote class="bg-white rounded-xl shadow-md p-6 flex flex-col items-center text-center" tabindex="0">
+      <img alt="Photo of client smiling man with beard" class="rounded-full mb-4" height="80" src="https://storage.googleapis.com/a1aa/image/0ab81986-6156-4a1e-7c0c-4990cb7b8ff1.jpg" width="80"/>
+      <p class="mb-4 italic text-gray-700">
+       "Excellent service and great agents. Found the perfect rental in no
+            time."
+      </p>
+      <div class="text-yellow-400">
+       <i class="fas fa-star">
+       </i>
+       <i class="fas fa-star">
+       </i>
+       <i class="fas fa-star">
+       </i>
+       <i class="fas fa-star">
+       </i>
+       <i class="fas fa-star">
+       </i>
+      </div>
+      <footer class="mt-3 font-semibold text-gray-900">
+       Mayank Sigh
+      </footer>
+     </blockquote>
+     <!-- Testimonial 3 -->
+     <blockquote class="bg-white rounded-xl shadow-md p-6 flex flex-col items-center text-center" tabindex="0">
+      <img alt="Photo of client smiling woman with long hair" class="rounded-full mb-4" height="80" src="https://storage.googleapis.com/a1aa/image/8a7604cc-c9ee-4df0-2ee6-bf1c51c92760.jpg" width="80"/>
+      <p class="mb-4 italic text-gray-700">
+       "Professional and trustworthy. Helped me sell my property quickly."
+      </p>
+      <div class="text-yellow-400">
+       <i class="fas fa-star">
+       </i>
+       <i class="fas fa-star">
+       </i>
+       <i class="fas fa-star">
+       </i>
+       <i class="fas fa-star">
+       </i>
+       <i class="fas fa-star-half-alt">
+       </i>
+      </div>
+      <footer class="mt-3 font-semibold text-gray-900">
+      Riya Sharma
+      </footer>
+     </blockquote>
+    </div>
+   </section>
+   <!-- Meet the Agents -->
+   <section class="max-w-7xl mx-auto px-6 mt-20">
+    <h2 class="text-3xl font-bold mb-8 text-center">
+     Meet the Agents
+    </h2>
+    <div aria-label="Real estate agents" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+     <!-- Agent 1 -->
+     <article class="bg-white rounded-xl shadow-md p-6 flex flex-col items-center text-center" tabindex="0">
+      <img alt="Photo of agent woman with short hair smiling" class="rounded-full mb-4 w-36 h-36 object-cover" height="150" src="https://storage.googleapis.com/a1aa/image/5e2c75db-29bf-476b-fdd4-16749f946668.jpg" width="150"/>
+      <h3 class="text-xl font-semibold">
+       Priya Sharma
+      </h3>
+      <p class="text-pink-400 mb-4">
+       Senior Agent
+      </p>
+      <button aria-label="Contact Jessica Lee" class="bg-pink-400 text-white rounded-full py-2 px-6 hover:bg-pink-500 transition">
+       Contact
+      </button>
+     </article>
+     <!-- Agent 2 -->
+     <article class="bg-white rounded-xl shadow-md p-6 flex flex-col items-center text-center" tabindex="0">
+      <img alt="Photo of agent man with beard smiling" class="rounded-full mb-4 w-36 h-36 object-cover" height="150" src="https://storage.googleapis.com/a1aa/image/a5258372-73fb-4a6c-8769-595e2ad7ebba.jpg" width="150"/>
+      <h3 class="text-xl font-semibold">
+       Akash Gupta
+      </h3>
+      <p class="text-pink-400 mb-4">
+       Property Specialist
+      </p>
+      <button aria-label="Contact Michael Brown" class="bg-pink-400 text-white rounded-full py-2 px-6 hover:bg-pink-500 transition">
+       Contact
+      </button>
+     </article>
+     <!-- Agent 3 -->
+     <article class="bg-white rounded-xl shadow-md p-6 flex flex-col items-center text-center" tabindex="0">
+      <img alt="Photo of agent woman with long hair smiling" class="rounded-full mb-4 w-36 h-36 object-cover" height="150" src="https://storage.googleapis.com/a1aa/image/e7fa89ba-7594-4e9b-1782-92916e06e8b0.jpg" width="150"/>
+      <h3 class="text-xl font-semibold">
+      Sakina Khan
+      </h3>
+      <p class="text-pink-400 mb-4">
+       Rental Expert
+      </p>
+      <button aria-label="Contact Sophia Martinez" class="bg-pink-400 text-white rounded-full py-2 px-6 hover:bg-pink-500 transition">
+       Contact
+      </button>
+     </article>
+     <!-- Agent 4 -->
+     <article class="bg-white rounded-xl shadow-md p-6 flex flex-col items-center text-center" tabindex="0">
+      <img alt="Photo of agent man with glasses smiling" class="rounded-full mb-4 w-36 h-36 object-cover" height="150" src="https://storage.googleapis.com/a1aa/image/2b16d4f3-b475-4aaf-e26f-fe8131e01ec5.jpg" width="150"/>
+      <h3 class="text-xl font-semibold">
+       Sovan Chatterjee
+      </h3>
+      <p class="text-pink-400 mb-4">
+       Commercial Specialist
+      </p>
+      <button aria-label="Contact David Kim" class="bg-pink-400 text-white rounded-full py-2 px-6 hover:bg-pink-500 transition">
+       Contact
+      </button>
+     </article>
+    </div>
+   </section>
+   <!-- Interactive Map Preview -->
+   <section class="max-w-7xl mx-auto px-6 mt-20">
+    <h2 class="text-3xl font-bold mb-8 text-center">
+     Explore on Map
+    </h2>
+    <div class="w-full h-96 rounded-xl overflow-hidden shadow-lg">
+     <iframe class="w-full h-full border-0" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/d/embed?mid=1v6q6Q6Xq6q6q6q6q6q6q6q6q6q6q6q6q&amp;hl=en" title="Interactive map with pinned properties">
+     </iframe>
+    </div>
+   </section>
+   <!-- Blog Highlights or Tips -->
+   <section class="max-w-7xl mx-auto px-6 mt-20">
+    <h2 class="text-3xl font-bold mb-8 text-center">
+     Latest Blog Posts
+    </h2>
+    <div aria-label="Blog highlights" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+     <article class="bg-white rounded-xl shadow-md overflow-hidden flex flex-col" tabindex="0">
+      <img alt="Illustration of a happy family in front of a new home" class="w-full h-48 object-cover" height="350" src="https://storage.googleapis.com/a1aa/image/743b3e0f-9ec8-4c58-6a68-22951a444060.jpg" width="600"/>
+      <div class="p-6 flex flex-col flex-grow">
+       <h3 class="text-xl font-semibold mb-2">
+        How to buy your first home
+       </h3>
+       <p class="text-gray-600 flex-grow">
+        A step-by-step guide to help you navigate the home buying process
+              with confidence.
+       </p>
+       <button aria-label="Read more about How to buy your first home" class="mt-4 self-start bg-pink-400 text-white rounded-full py-2 px-5 hover:bg-pink-500 transition">
+        Read More
+       </button>
+      </div>
+     </article>
+     <article class="bg-white rounded-xl shadow-md overflow-hidden flex flex-col" tabindex="0">
+      <img alt="City skyline with highlighted neighborhoods" class="w-full h-48 object-cover" height="350" src="https://storage.googleapis.com/a1aa/image/ec696b23-fb6f-4395-4d93-6d82e1377bc3.jpg" width="600"/>
+      <div class="p-6 flex flex-col flex-grow">
+       <h3 class="text-xl font-semibold mb-2">
+        Top neighborhoods in Cityville
+       </h3>
+       <p class="text-gray-600 flex-grow">
+        Discover the best areas to live, work, and play in Cityville.
+       </p>
+       <button aria-label="Read more about Top neighborhoods in Cityville" class="mt-4 self-start bg-pink-400 text-white rounded-full py-2 px-5 hover:bg-pink-500 transition">
+        Read More
+       </button>
+      </div>
+     </article>
+     <article class="bg-white rounded-xl shadow-md overflow-hidden flex flex-col" tabindex="0">
+      <img alt="Hand holding a house key with a small house in the background" class="w-full h-48 object-cover" height="350" src="https://storage.googleapis.com/a1aa/image/c45ba627-be81-4c9e-5070-df64ffa1f363.jpg" width="600"/>
+      <div class="p-6 flex flex-col flex-grow">
+       <h3 class="text-xl font-semibold mb-2">
+        Home buying tips
+       </h3>
+       <p class="text-gray-600 flex-grow">
+        Essential tips to make your home buying experience smooth and
+              successful.
+       </p>
+       <button aria-label="Read more about Home buying tips" class="mt-4 self-start bg-pink-400 text-white rounded-full py-2 px-5 hover:bg-pink-500 transition">
+        Read More
+       </button>
+      </div>
+     </article>
+    </div>
+   </section>
+   <!-- Video Introduction 
+   <section class="max-w-7xl mx-auto px-6 mt-20">
+    <h2 class="text-3xl font-bold mb-8 text-center">
+     Welcome to BrijHome
+    </h2>
+    <div class="aspect-w-16 aspect-h-9 max-w-4xl mx-auto rounded-xl overflow-hidden shadow-lg">
+     <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Welcome video from BrijHome agency">
+     </iframe>
+    </div>
+   </section>
+    Mobile App Promo -->
+   <section class="max-w-7xl mx-auto px-6 mt-20 bg-pink-50 rounded-xl py-12 flex flex-col md:flex-row items-center justify-between gap-8">
+    <div class="max-w-xl text-center md:text-left">
+     <h2 class="text-3xl font-bold mb-4">
+      Get the BrijHome App
+     </h2>
+     <p class="text-gray-700 mb-6">
+      Search properties, schedule viewings, and stay updated on the go.
+     </p>
+     <div class="flex justify-center md:justify-start space-x-4">
+      <a aria-label="Download BrijHome app for iOS" class="inline-block bg-black text-white rounded-lg px-6 py-3 text-lg font-semibold hover:bg-gray-800 transition" href="#">
+       <i class="fab fa-apple mr-2">
+       </i>
+       App Store
+      </a>
+      <a aria-label="Download BrijHome app for Android" class="inline-block bg-green-600 text-white rounded-lg px-6 py-3 text-lg font-semibold hover:bg-green-700 transition" href="#">
+       <i class="fab fa-google-play mr-2">
+       </i>
+       Google Play
+      </a>
+     </div>
+    </div>
+    <img alt="Mobile phone showing BrijHome app interface" class="w-48 h-auto rounded-xl shadow-lg" height="500" src="https://storage.googleapis.com/a1aa/image/6f1c5d53-5eb9-4593-fe04-5285bd8e261b.jpg" width="300"/>
+   </section>
+   <!-- Call to Action (CTA) -->
+   <section class="max-w-7xl mx-auto px-6 mt-20 text-center">
+    <h2 class="text-3xl font-bold mb-8">
+     Ready to take the next step?
+    </h2>
+    <div class="flex flex-col sm:flex-row justify-center gap-6">
+     <button aria-label="List Your Property" class="bg-pink-400 text-white rounded-full py-4 px-10 text-lg font-semibold hover:bg-pink-500 transition">
+      List Your Property
+     </button>
+     <button aria-label="Schedule a Viewing" class="bg-pink-400 text-white rounded-full py-4 px-10 text-lg font-semibold hover:bg-pink-500 transition">
+      Schedule a Viewing
+     </button>
+     <button aria-label="Get a Free Estimate" class="bg-pink-400 text-white rounded-full py-4 px-10 text-lg font-semibold hover:bg-pink-500 transition">
+      Get a Free Estimate
+     </button>
+    </div>
+   </section>
+   <!-- Statistics Section -->
+   <section class="max-w-7xl mx-auto px-6 mt-20 mb-20">
+    <div aria-label="Statistics about BrijHome" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12 text-center bg-pink-50 rounded-xl py-12 shadow-lg">
+     <div>
+      <div class="text-5xl font-extrabold text-pink-400">
+       1,200+
+      </div>
+      <div class="mt-2 text-lg font-semibold">
+       Properties Listed
+      </div>
+     </div>
+     <div>
+      <div class="text-5xl font-extrabold text-pink-400">
+       85+
+      </div>
+      <div class="mt-2 text-lg font-semibold">
+       Agents Available
+      </div>
+     </div>
+     <div>
+      <div class="text-5xl font-extrabold text-pink-400">
+       3,500+
+      </div>
+      <div class="mt-2 text-lg font-semibold">
+       Happy Customers
+      </div>
+     </div>
+     <div>
+      <div class="text-5xl font-extrabold text-pink-400">
+       25+
+      </div>
+      <div class="mt-2 text-lg font-semibold">
+       Cities Covered
+      </div>
+     </div>
+    </div>
+   </section>
+  </main>
+ <footer class="bg-white border-t border-gray-200">
+   <div class="max-w-7xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0">
+    <p class="text-gray-600 text-sm select-none">
+     &copy; 2024 BrijHome. All rights reserved.
+    </p>
+    <div class="flex space-x-6">
+     <a aria-label="Facebook" class="text-gray-600 hover:text-pink-400 transition text-2xl" href="https://www.facebook.com" rel="noopener noreferrer" target="_blank">
+      <i class="fab fa-facebook-f">
+      </i>
+     </a>
+     <a aria-label="WhatsApp" class="text-gray-600 hover:text-pink-400 transition text-2xl" href="https://wa.me/" rel="noopener noreferrer" target="_blank">
+      <i class="fab fa-whatsapp">
+      </i>
+     </a>
+     <a aria-label="Instagram" class="text-gray-600 hover:text-pink-400 transition text-2xl" href="https://www.instagram.com" rel="noopener noreferrer" target="_blank">
+      <i class="fab fa-instagram">
+      </i>
+     </a>
+     <a aria-label="X (Twitter)" class="text-gray-600 hover:text-pink-400 transition text-2xl" href="https://twitter.com" rel="noopener noreferrer" target="_blank">
+      <i class="fab fa-twitter">
+      </i>
+     </a>
+    </div>
+   </div>
+  </footer> --> 
+  <script>
+   // Responsive behavior is mostly handled by Tailwind CSS classes.
+   // Add JavaScript for advanced search filtering and map view toggle.
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const searchForm = document.querySelector('form[role="search"]');
+      const listingsContainer = document.getElementById('featured-listings');
+      const listings = Array.from(listingsContainer.children);
+
+      // Filter function for featured listings
+      function filterListings() {
+        const location = document.getElementById('search-location').value.toLowerCase();
+        const propertyType = document.getElementById('property-type').value.toLowerCase();
+        const priceRange = document.getElementById('price-range').value;
+        const bedrooms = document.getElementById('bedrooms').value;
+        const bathrooms = document.getElementById('bathrooms').value;
+        const saleRent = document.querySelector('input[name="sale-rent"]:checked').value;
+
+        listings.forEach(listing => {
+          const type = listing.getAttribute('data-type').toLowerCase();
+          const price = parseInt(listing.getAttribute('data-price'), 10);
+          const beds = parseInt(listing.getAttribute('data-bedrooms'), 10);
+          const baths = parseInt(listing.getAttribute('data-bathrooms'), 10);
+          const sale = listing.getAttribute('data-sale');
+
+          // Location filter (simple text match in location paragraph)
+          const locationText = listing.querySelector('p').textContent.toLowerCase();
+          const locationMatch = location === '' || locationText.includes(location);
+
+          // Property type filter
+          const typeMatch = propertyType === 'property type' || propertyType === '' || type === propertyType;
+
+          // Price range filter
+          let priceMatch = true;
+          if (priceRange === 'Under $100k') priceMatch = price < 100000;
+          else if (priceRange === '$100k - $500k') priceMatch = price >= 100000 && price <= 500000;
+          else if (priceRange === '$500k - $1M') priceMatch = price > 500000 && price <= 1000000;
+          else if (priceRange === 'Over $1M') priceMatch = price > 1000000;
+
+          // Bedrooms filter
+          let bedroomsMatch = true;
+          if (bedrooms !== 'Bedrooms' && bedrooms !== '') {
+            const minBeds = parseInt(bedrooms, 10);
+            bedroomsMatch = beds >= minBeds;
+          }
+
+          // Bathrooms filter
+          let bathroomsMatch = true;
+          if (bathrooms !== 'Bathrooms' && bathrooms !== '') {
+            const minBaths = parseInt(bathrooms, 10);
+            bathroomsMatch = baths >= minBaths;
+          }
+
+          // Sale/Rent filter
+          const saleRentMatch = sale === saleRent;
+
+          if (locationMatch && typeMatch && priceMatch && bedroomsMatch && bathroomsMatch && saleRentMatch) {
+            listing.style.display = '';
+          } else {
+            listing.style.display = 'none';
+          }
+        });
+      }
+
+      // Attach event listeners to inputs for live filtering
+      ['search-location', 'property-type', 'price-range', 'bedrooms', 'bathrooms'].forEach(id => {
+        const el = document.getElementById(id);
+        el.addEventListener('input', filterListings);
+      });
+
+      document.querySelectorAll('input[name="sale-rent"]').forEach(radio => {
+        radio.addEventListener('change', filterListings);
+      });
+
+      // On form submit, prevent default and filter listings
+      searchForm.addEventListener('submit', e => {
+        e.preventDefault();
+        filterListings();
+      });
+
+      // Map View button toggles map section visibility
+      const mapViewBtn = document.getElementById('map-view-btn');
+      const mapSection = document.querySelector('section[max-w-7xl] iframe').parentElement.parentElement;
+      let mapVisible = true; // map is visible by default
+
+      mapViewBtn.addEventListener('click', () => {
+        mapVisible = !mapVisible;
+        if (mapVisible) {
+          mapSection.style.display = 'block';
+          mapViewBtn.textContent = '';
+          mapViewBtn.innerHTML = '<i class="fas fa-map-marked-alt mr-2"></i> Map View';
+        } else {
+          mapSection.style.display = 'none';
+          mapViewBtn.textContent = '';
+          mapViewBtn.innerHTML = '<i class="fas fa-list mr-2"></i> List View';
+        }
+      });
+
+      // Initial filter to show all listings on load
+      filterListings();
+
+      // Responsive adjustments for search form inputs on small screens
+      function adjustSearchForm() {
+        const width = window.innerWidth;
+        const form = searchForm;
+        if (width < 640) {
+          form.classList.add('flex-col');
+          form.classList.remove('flex-wrap');
+          form.querySelectorAll('input, select, button, div.flex.items-center').forEach(el => {
+            el.classList.add('w-full');
+            el.classList.remove('min-w-[140px]', 'min-w-[100px]', 'min-w-[150px]');
+          });
+        } else {
+          form.classList.remove('flex-col');
+          form.classList.add('flex-wrap');
+          form.querySelectorAll('input#search-location').forEach(el => {
+            el.classList.add('min-w-[150px]');
+            el.classList.remove('w-full');
+          });
+          form.querySelectorAll('select#property-type, select#price-range').forEach(el => {
+            el.classList.add('min-w-[140px]');
+            el.classList.remove('w-full');
+          });
+          form.querySelectorAll('select#bedrooms, select#bathrooms').forEach(el => {
+            el.classList.add('min-w-[100px]');
+            el.classList.remove('w-full');
+          });
+          form.querySelector('div.flex.items-center').classList.add('min-w-[140px]');
+          form.querySelector('div.flex.items-center').classList.remove('w-full');
+          form.querySelectorAll('button').forEach(el => {
+            el.classList.remove('w-full');
+          });
+        }
+      }
+
+      window.addEventListener('resize', adjustSearchForm);
+      adjustSearchForm();
+    });
+  </script>
+ </body>
+</html>
