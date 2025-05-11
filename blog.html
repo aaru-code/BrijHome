@@ -1,0 +1,459 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   Blog - BrijHome
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;display=swap" rel="stylesheet"/>
+  <style>
+   body {
+      font-family: "Inter", sans-serif;
+    }
+   /* Scrollbar for horizontal filters */
+   #category-filters::-webkit-scrollbar {
+     height: 6px;
+   }
+   #category-filters::-webkit-scrollbar-thumb {
+     background-color: #ec4899; /* pink-400 */
+     border-radius: 3px;
+   }
+   /* Reading progress bar */
+   #reading-progress {
+     position: fixed;
+     top: 0;
+     left: 0;
+     height: 4px;
+     background-color: #ec4899;
+     width: 0%;
+     z-index: 50;
+     transition: width 0.25s ease-out;
+   }
+   /* Pull quote style */
+   blockquote.pull-quote {
+     font-size: 1.5rem;
+     font-weight: 700;
+     font-style: italic;
+     color: #ec4899;
+     border-left: 4px solid #ec4899;
+     padding-left: 1rem;
+     margin: 2rem 0;
+   }
+  </style>
+ </head>
+ <body class="bg-white text-gray-900 flex flex-col min-h-screen">
+  <div id="reading-progress"></div>
+  <header class="fixed top-0 left-0 right-0 bg-white z-40 shadow-sm">
+   <nav class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+    <div class="font-extrabold text-lg select-none">
+     BrijHome
+    </div>
+    <ul class="hidden md:flex space-x-10 text-base font-normal">
+     <li>
+      <a class="text-black hover:text-pink-400" href="index.html">
+       Home
+      </a>
+     </li>
+     <li>
+      <a class="text-black hover:text-pink-400" href="about.html">
+       About
+      </a>
+     </li>
+     <li>
+      <a class="text-black hover:text-pink-400" href="agent.html">
+       Agent
+      </a>
+     </li>
+     <li>
+      <a class="text-black hover:text-pink-400" href="service.html">
+       Services
+      </a>
+     </li>
+     <li>
+      <a class="text-black hover:text-pink-400" href="properties.html">
+       Properties
+      </a>
+     </li>
+     <li>
+      <a aria-current="page" class="text-pink-400 hover:text-pink-400" href="/blog.html">
+       Blog
+      </a>
+     </li>
+     <li>
+      <a class="text-black hover:text-pink-400" href="/contact.html">
+       Contact
+      </a>
+     </li>
+    </ul>
+   </nav>
+  </header>
+  <main class="pt-24 max-w-7xl mx-auto px-6 flex-grow grid grid-cols-1 md:grid-cols-4 gap-10">
+   <!-- Blog Content -->
+   <section class="md:col-span-3 space-y-12">
+    <!-- Search & Filters -->
+    <div class="flex flex-wrap items-center gap-4 mb-8">
+     <input aria-label="Search blog posts" class="flex-grow border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-400" id="search-input" placeholder="Search blog topics..." type="search"/>
+     <div class="flex space-x-2 overflow-x-auto scrollbar-thin" id="category-filters" role="list">
+      <button class="category-btn bg-pink-400 text-white rounded-full px-4 py-2 font-semibold whitespace-nowrap" data-category="all" type="button">
+       All
+      </button>
+      <button class="category-btn bg-gray-200 text-gray-700 rounded-full px-4 py-2 font-semibold whitespace-nowrap hover:bg-pink-400 hover:text-white" data-category="buying" type="button">
+       🏘️ Buying
+      </button>
+      <button class="category-btn bg-gray-200 text-gray-700 rounded-full px-4 py-2 font-semibold whitespace-nowrap hover:bg-pink-400 hover:text-white" data-category="legal" type="button">
+       📜 Legal &amp; Documentation
+      </button>
+      <button class="category-btn bg-gray-200 text-gray-700 rounded-full px-4 py-2 font-semibold whitespace-nowrap hover:bg-pink-400 hover:text-white" data-category="investment" type="button">
+       📈 Investment Advice
+      </button>
+      <button class="category-btn bg-gray-200 text-gray-700 rounded-full px-4 py-2 font-semibold whitespace-nowrap hover:bg-pink-400 hover:text-white" data-category="area-guides" type="button">
+       🗺️ Area Guides
+      </button>
+     </div>
+    </div>
+    <!-- Blog Posts Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8" id="blog-posts">
+     <!-- Blog Post 1 -->
+     <article class="bg-white rounded-xl shadow-md overflow-hidden flex flex-col hover:shadow-2xl transition cursor-pointer" data-category="buying" tabindex="0">
+      <img alt="Modern flat interior with living room and kitchen" class="w-full h-48 object-cover" height="350" src="https://storage.googleapis.com/a1aa/image/1a2552ec-5181-4839-24a2-ca672995c39d.jpg" width="600"/>
+      <div class="p-6 flex flex-col flex-grow">
+       <h2 class="text-xl font-semibold mb-2">
+        How to Buy Your First Home: A Step-by-Step Guide
+       </h2>
+       <p class="text-gray-700 flex-grow mb-4">
+        Buying your first home can be overwhelming. This guide breaks down the process into simple steps to help you navigate with confidence.
+       </p>
+       <div class="flex items-center justify-between text-sm text-pink-400 font-semibold mb-4">
+        <span>
+         🏘️ Buying Tips
+        </span>
+        <time datetime="2024-04-10">
+         Apr 10, 2024
+        </time>
+       </div>
+       <a aria-label="Read more about How to Buy Your First Home" class="self-start bg-pink-400 text-white rounded-full px-5 py-2 font-semibold hover:bg-pink-500 transition" href="#">
+        Read More
+       </a>
+      </div>
+     </article>
+     <!-- Blog Post 2 -->
+     <article class="bg-white rounded-xl shadow-md overflow-hidden flex flex-col hover:shadow-2xl transition cursor-pointer" data-category="legal" tabindex="0">
+      <img alt="Legal documents and contract signing" class="w-full h-48 object-cover" height="350" src="https://storage.googleapis.com/a1aa/image/25bec8bb-33d1-4e2b-f54e-077369cf55cb.jpg" width="600"/>
+      <div class="p-6 flex flex-col flex-grow">
+       <h2 class="text-xl font-semibold mb-2">
+        Understanding the Registry Process in Property Buying
+       </h2>
+       <p class="text-gray-700 flex-grow mb-4">
+        Learn about the legal registry process, documents required, and how to ensure your property purchase is secure.
+       </p>
+       <div class="flex items-center justify-between text-sm text-pink-400 font-semibold mb-4">
+        <span>
+         📜 Legal &amp; Documentation
+        </span>
+        <time datetime="2024-03-22">
+         Mar 22, 2024
+        </time>
+       </div>
+       <a aria-label="Read more about Registry Process" class="self-start bg-pink-400 text-white rounded-full px-5 py-2 font-semibold hover:bg-pink-500 transition" href="#">
+        Read More
+       </a>
+      </div>
+     </article>
+     <!-- Blog Post 3 -->
+     <article class="bg-white rounded-xl shadow-md overflow-hidden flex flex-col hover:shadow-2xl transition cursor-pointer" data-category="investment" tabindex="0">
+      <img alt="Investor analyzing property market trends on laptop" class="w-full h-48 object-cover" height="350" src="https://storage.googleapis.com/a1aa/image/8a387df9-21ca-498d-ce9c-4ac69a0f3411.jpg" width="600"/>
+      <div class="p-6 flex flex-col flex-grow">
+       <h2 class="text-xl font-semibold mb-2">
+        Top Investment Tips for Real Estate in Greater Noida
+       </h2>
+       <p class="text-gray-700 flex-grow mb-4">
+        Discover how to maximize your ROI with smart property investments in the booming Greater Noida market.
+       </p>
+       <div class="flex items-center justify-between text-sm text-pink-400 font-semibold mb-4">
+        <span>
+         📈 Investment Advice
+        </span>
+        <time datetime="2024-02-15">
+         Feb 15, 2024
+        </time>
+       </div>
+       <a aria-label="Read more about Investment Tips" class="self-start bg-pink-400 text-white rounded-full px-5 py-2 font-semibold hover:bg-pink-500 transition" href="#">
+        Read More
+       </a>
+      </div>
+     </article>
+     <!-- Blog Post 4 -->
+     <article class="bg-white rounded-xl shadow-md overflow-hidden flex flex-col hover:shadow-2xl transition cursor-pointer" data-category="area-guides" tabindex="0">
+      <img alt="City skyline with highlighted neighborhoods" class="w-full h-48 object-cover" height="350" src="https://storage.googleapis.com/a1aa/image/ec696b23-fb6f-4395-4d93-6d82e1377bc3.jpg" width="600"/>
+      <div class="p-6 flex flex-col flex-grow">
+       <h2 class="text-xl font-semibold mb-2">
+        Best Neighborhoods to Buy Flats in Delhi NCR
+       </h2>
+       <p class="text-gray-700 flex-grow mb-4">
+        Explore the top sectors and neighborhoods in Delhi NCR for buying flats with great amenities and connectivity.
+       </p>
+       <div class="flex items-center justify-between text-sm text-pink-400 font-semibold mb-4">
+        <span>
+         🗺️ Area Guides
+        </span>
+        <time datetime="2024-01-30">
+         Jan 30, 2024
+        </time>
+       </div>
+       <a aria-label="Read more about Best Neighborhoods in Delhi NCR" class="self-start bg-pink-400 text-white rounded-full px-5 py-2 font-semibold hover:bg-pink-500 transition" href="#">
+        Read More
+       </a>
+      </div>
+     </article>
+    </div>
+    <!-- Feedback Prompt -->
+    <section class="mt-16 max-w-3xl mx-auto bg-pink-50 rounded-xl p-8 shadow-lg text-center space-y-6">
+     <h3 class="text-2xl font-bold">
+      Was this article helpful?
+     </h3>
+     <div class="flex justify-center space-x-12 text-4xl text-pink-400 cursor-pointer select-none" id="feedback-buttons" role="group" aria-label="Feedback buttons">
+      <button aria-label="Yes" class="hover:text-pink-600" type="button" id="feedback-yes" title="Yes">
+       👍
+      </button>
+      <button aria-label="No" class="hover:text-pink-600" type="button" id="feedback-no" title="No">
+       👎
+      </button>
+     </div>
+     <textarea aria-label="Additional feedback" class="w-full border border-gray-300 rounded-md p-3 resize-none hidden" id="feedback-text" placeholder="What can we improve?"></textarea>
+     <button aria-label="Submit feedback" class="bg-pink-400 text-white rounded-full px-6 py-3 font-semibold hover:bg-pink-500 transition hidden" id="feedback-submit" type="button">
+      Submit Feedback
+     </button>
+     <p class="text-green-600 font-semibold hidden" id="feedback-thanks">
+      Thank you for your feedback!
+     </p>
+    </section>
+    <!-- Newsletter Signup -->
+    <section class="mt-16 max-w-3xl mx-auto bg-white rounded-xl p-8 shadow-lg text-center space-y-6 border border-gray-200">
+     <h3 class="text-2xl font-bold">
+      Want more real estate tips? Get our monthly updates!
+     </h3>
+     <form class="flex flex-col sm:flex-row justify-center gap-4" id="newsletter-form" novalidate="">
+      <input aria-label="Email address" class="border border-gray-300 rounded-md px-4 py-3 flex-grow focus:outline-none focus:ring-2 focus:ring-pink-400" id="newsletter-email" placeholder="Enter your email" required="" type="email"/>
+      <button aria-label="Subscribe to newsletter" class="bg-pink-400 text-white rounded-full px-6 py-3 font-semibold hover:bg-pink-500 transition" type="submit">
+       Subscribe
+      </button>
+     </form>
+     <p class="text-green-600 font-semibold hidden" id="newsletter-success">
+      Thank you for subscribing!
+     </p>
+    </section>
+   </section>
+   <!-- Sidebar -->
+   <aside class="hidden md:block space-y-10 sticky top-24 max-h-[calc(100vh-6rem)] overflow-y-auto pr-4">
+    <!-- Popular Posts -->
+    <section>
+     <h3 class="text-2xl font-bold mb-4">
+      Popular Posts
+     </h3>
+     <ul class="space-y-4">
+      <li class="flex items-center space-x-4 cursor-pointer hover:bg-pink-50 rounded-lg p-2 transition" tabindex="0">
+       <img alt="Modern flat interior" class="w-16 h-12 object-cover rounded-md" height="48" src="https://storage.googleapis.com/a1aa/image/1a2552ec-5181-4839-24a2-ca672995c39d.jpg" width="64"/>
+       <div>
+        <p class="font-semibold text-pink-400">
+         How to Buy Your First Home
+        </p>
+        <time class="text-xs text-gray-500" datetime="2024-04-10">
+         Apr 10, 2024
+        </time>
+       </div>
+      </li>
+      <li class="flex items-center space-x-4 cursor-pointer hover:bg-pink-50 rounded-lg p-2 transition" tabindex="0">
+       <img alt="Legal documents" class="w-16 h-12 object-cover rounded-md" height="48" src="https://storage.googleapis.com/a1aa/image/25bec8bb-33d1-4e2b-f54e-077369cf55cb.jpg" width="64"/>
+       <div>
+        <p class="font-semibold text-pink-400">
+         Registry Process Explained
+        </p>
+        <time class="text-xs text-gray-500" datetime="2024-03-22">
+         Mar 22, 2024
+        </time>
+       </div>
+      </li>
+      <li class="flex items-center space-x-4 cursor-pointer hover:bg-pink-50 rounded-lg p-2 transition" tabindex="0">
+       <img alt="Investor analyzing market" class="w-16 h-12 object-cover rounded-md" height="48" src="https://storage.googleapis.com/a1aa/image/8a387df9-21ca-498d-ce9c-4ac69a0f3411.jpg" width="64"/>
+       <div>
+        <p class="font-semibold text-pink-400">
+         Investment Tips for Greater Noida
+        </p>
+        <time class="text-xs text-gray-500" datetime="2024-02-15">
+         Feb 15, 2024
+        </time>
+       </div>
+      </li>
+     </ul>
+    </section>
+    <!-- Categories with Icons -->
+    <section>
+     <h3 class="text-2xl font-bold mb-4">
+      Popular Categories
+     </h3>
+     <ul class="space-y-3">
+      <li class="flex items-center space-x-3 cursor-pointer hover:text-pink-400 transition" tabindex="0">
+       <i class="fas fa-file-invoice-dollar text-pink-400 text-xl">
+       </i>
+       <span>🧾 Home Loan Help</span>
+      </li>
+      <li class="flex items-center space-x-3 cursor-pointer hover:text-pink-400 transition" tabindex="0">
+       <i class="fas fa-hard-hat text-pink-400 text-xl">
+       </i>
+       <span>🏗️ Land Buying Process</span>
+      </li>
+      <li class="flex items-center space-x-3 cursor-pointer hover:text-pink-400 transition" tabindex="0">
+       <i class="fas fa-home text-pink-400 text-xl">
+       </i>
+       <span>🏘️ Flat Buying in Delhi NCR</span>
+      </li>
+     </ul>
+    </section>
+   </aside>
+  </main>
+  <footer class="bg-white border-t border-gray-200 mt-20 py-8">
+   <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0">
+    <p class="text-gray-600 text-sm select-none">
+     © 2024 BrijHome. All rights reserved.
+    </p>
+    <div class="flex space-x-6">
+     <a aria-label="Facebook" class="text-gray-600 hover:text-pink-400 transition text-2xl" href="https://www.facebook.com" rel="noopener noreferrer" target="_blank">
+      <i class="fab fa-facebook-f">
+      </i>
+     </a>
+     <a aria-label="WhatsApp" class="text-gray-600 hover:text-pink-400 transition text-2xl" href="https://wa.me/" rel="noopener noreferrer" target="_blank">
+      <i class="fab fa-whatsapp">
+      </i>
+     </a>
+     <a aria-label="Instagram" class="text-gray-600 hover:text-pink-400 transition text-2xl" href="https://www.instagram.com" rel="noopener noreferrer" target="_blank">
+      <i class="fab fa-instagram">
+      </i>
+     </a>
+     <a aria-label="X (Twitter)" class="text-gray-600 hover:text-pink-400 transition text-2xl" href="https://twitter.com" rel="noopener noreferrer" target="_blank">
+      <i class="fab fa-twitter">
+      </i>
+     </a>
+    </div>
+   </div>
+  </footer>
+  <script>
+   document.addEventListener('DOMContentLoaded', () => {
+      // Blog category filter buttons
+      const categoryButtons = document.querySelectorAll('.category-btn');
+      const blogPosts = document.querySelectorAll('#blog-posts article');
+      const searchInput = document.getElementById('search-input');
+
+      function filterPosts() {
+        const selectedCategory = document.querySelector('.category-btn.bg-pink-400').getAttribute('data-category');
+        const searchTerm = searchInput.value.toLowerCase();
+
+        blogPosts.forEach(post => {
+          const postCategory = post.getAttribute('data-category');
+          const title = post.querySelector('h2').textContent.toLowerCase();
+          const excerpt = post.querySelector('p').textContent.toLowerCase();
+
+          const matchesCategory = selectedCategory === 'all' || postCategory === selectedCategory;
+          const matchesSearch = title.includes(searchTerm) || excerpt.includes(searchTerm);
+
+          if (matchesCategory && matchesSearch) {
+            post.style.display = '';
+          } else {
+            post.style.display = 'none';
+          }
+        });
+      }
+
+      categoryButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          categoryButtons.forEach(btn => {
+            btn.classList.remove('bg-pink-400', 'text-white');
+            btn.classList.add('bg-gray-200', 'text-gray-700');
+          });
+          button.classList.add('bg-pink-400', 'text-white');
+          button.classList.remove('bg-gray-200', 'text-gray-700');
+          filterPosts();
+        });
+      });
+
+      searchInput.addEventListener('input', filterPosts);
+
+      filterPosts();
+
+      // Feedback buttons
+      const feedbackYes = document.getElementById('feedback-yes');
+      const feedbackNo = document.getElementById('feedback-no');
+      const feedbackText = document.getElementById('feedback-text');
+      const feedbackSubmit = document.getElementById('feedback-submit');
+      const feedbackThanks = document.getElementById('feedback-thanks');
+
+      let feedbackGiven = false;
+
+      function resetFeedback() {
+        feedbackText.value = '';
+        feedbackText.classList.add('hidden');
+        feedbackSubmit.classList.add('hidden');
+        feedbackThanks.classList.add('hidden');
+        feedbackGiven = false;
+      }
+
+      feedbackYes.addEventListener('click', () => {
+        if (feedbackGiven) return;
+        feedbackThanks.textContent = 'Thank you for your feedback!';
+        feedbackThanks.classList.remove('hidden');
+        feedbackText.classList.add('hidden');
+        feedbackSubmit.classList.add('hidden');
+        feedbackGiven = true;
+      });
+
+      feedbackNo.addEventListener('click', () => {
+        if (feedbackGiven) return;
+        feedbackText.classList.remove('hidden');
+        feedbackSubmit.classList.remove('hidden');
+        feedbackThanks.classList.add('hidden');
+      });
+
+      feedbackSubmit.addEventListener('click', () => {
+        if (feedbackText.value.trim() === '') {
+          alert('Please enter your feedback before submitting.');
+          return;
+        }
+        // Here you would send feedbackText.value to your backend or email service
+        feedbackThanks.textContent = 'Thank you for your feedback!';
+        feedbackThanks.classList.remove('hidden');
+        feedbackText.classList.add('hidden');
+        feedbackSubmit.classList.add('hidden');
+        feedbackGiven = true;
+      });
+
+      // Newsletter form
+      const newsletterForm = document.getElementById('newsletter-form');
+      const newsletterEmail = document.getElementById('newsletter-email');
+      const newsletterSuccess = document.getElementById('newsletter-success');
+
+      newsletterForm.addEventListener('submit', e => {
+        e.preventDefault();
+        const email = newsletterEmail.value.trim();
+        if (!email || !email.includes('@')) {
+          alert('Please enter a valid email address.');
+          return;
+        }
+        // Here you would send the email to your backend or email marketing service
+        newsletterSuccess.classList.remove('hidden');
+        newsletterEmail.value = '';
+      });
+
+      // Reading progress bar
+      const progressBar = document.getElementById('reading-progress');
+      window.addEventListener('scroll', () => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPercent = (scrollTop / docHeight) * 100;
+        progressBar.style.width = scrollPercent + '%';
+      });
+    });
+  </script>
+ </body>
+</html>

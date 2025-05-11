@@ -1,0 +1,324 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <title>AI Assistant - BrijHome</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    body {
+      font-family: "Inter", sans-serif;
+    }
+    #chat-container {
+      max-width: 700px;
+      margin: auto;
+      height: 80vh;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #e5e7eb;
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+    #chat-header {
+      background-color: #ec4899;
+      color: white;
+      padding: 1rem 1.5rem;
+      font-weight: 700;
+      font-size: 1.25rem;
+      user-select: none;
+    }
+    #chat-messages {
+      flex-grow: 1;
+      overflow-y: auto;
+      padding: 1rem 1.5rem;
+      background: #f9fafb;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .message {
+      max-width: 75%;
+      padding: 0.75rem 1rem;
+      border-radius: 1rem;
+      line-height: 1.4;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+    .message.user {
+      background-color: #ec4899;
+      color: white;
+      align-self: flex-end;
+      border-bottom-right-radius: 0;
+    }
+    .message.bot {
+      background-color: #e5e7eb;
+      color: #111827;
+      align-self: flex-start;
+      border-bottom-left-radius: 0;
+    }
+    #chat-input-area {
+      display: flex;
+      border-top: 1px solid #ddd;
+      padding: 0.5rem 1rem;
+      background: white;
+    }
+    #chat-input {
+      flex-grow: 1;
+      border: 1px solid #ddd;
+      border-radius: 9999px;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+    #chat-input:focus {
+      border-color: #ec4899;
+      box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.3);
+    }
+    #send-btn {
+      background-color: #ec4899;
+      border: none;
+      color: white;
+      padding: 0 1.25rem;
+      margin-left: 0.75rem;
+      border-radius: 9999px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: background-color 0.3s;
+    }
+    #send-btn:hover {
+      background-color: #db2777;
+    }
+    #model-select {
+      margin-left: 1rem;
+      border-radius: 9999px;
+      border: 1px solid #ddd;
+      padding: 0.25rem 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: border-color 0.3s;
+    }
+    #model-select:focus {
+      outline: none;
+      border-color: #ec4899;
+      box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.3);
+    }
+    #comparison-toggle {
+      margin-left: 1rem;
+      cursor: pointer;
+      font-weight: 600;
+      color: #ec4899;
+      user-select: none;
+    }
+    #comparison-toggle:hover {
+      text-decoration: underline;
+    }
+    /* Side by side comparison */
+    #comparison-container {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .comparison-box {
+      flex: 1;
+      background: #f3f4f6;
+      border-radius: 1rem;
+      padding: 1rem;
+      overflow-y: auto;
+      max-height: 300px;
+      white-space: pre-wrap;
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+    .comparison-box h3 {
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: #ec4899;
+    }
+    /* Responsive */
+    @media (max-width: 768px) {
+      #comparison-container {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body class="bg-white flex flex-col min-h-screen">
+  <header class="fixed top-0 left-0 right-0 bg-white z-50 shadow-sm">
+    <nav class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+      <div class="font-extrabold text-lg select-none">BrijHome AI Assistant</div>
+      <div class="flex items-center">
+        <label for="model-select" class="sr-only">Select AI Model</label>
+        <select id="model-select" aria-label="Select AI Model">
+          <option value="chatgpt">ChatGPT (OpenAI)</option>
+          <option value="gemini">Gemini AI (Google)</option>
+          <option value="auto">Auto (Smart Selection)</option>
+        </select>
+        <span id="comparison-toggle" tabindex="0" role="button" aria-pressed="false" aria-label="Toggle response comparison">Compare Responses</span>
+      </div>
+    </nav>
+  </header>
+  <main class="flex-grow pt-24 px-4 sm:px-6 lg:px-8 flex justify-center items-center">
+    <div id="chat-container" role="main" aria-live="polite" aria-atomic="false">
+      <div id="chat-header" class="hidden"></div>
+      <div id="chat-messages" aria-live="polite" aria-relevant="additions" tabindex="0"></div>
+      <form id="chat-input-area" aria-label="Chat input form">
+        <input
+          id="chat-input"
+          type="text"
+          placeholder="Ask me anything..."
+          aria-autocomplete="list"
+          aria-controls="chat-messages"
+          autocomplete="off"
+          required
+        />
+        <button id="send-btn" type="submit" aria-label="Send message">Send</button>
+      </form>
+      <div id="comparison-container" class="hidden" aria-label="Response comparison">
+        <div class="comparison-box" id="chatgpt-response" aria-live="polite" aria-atomic="true">
+          <h3>ChatGPT says:</h3>
+          <div class="response-content"></div>
+        </div>
+        <div class="comparison-box" id="gemini-response" aria-live="polite" aria-atomic="true">
+          <h3>Gemini says:</h3>
+          <div class="response-content"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="bg-white border-t border-gray-200 py-6 text-center text-gray-600 text-sm select-none">
+    &copy; 2024 BrijHome. All rights reserved.
+  </footer>
+
+  <script>
+    // NOTE: This is a frontend demo skeleton.
+    // Real integration requires backend proxy to securely call OpenAI and Google Gemini APIs with your API keys.
+    // This demo simulates responses and model selection logic.
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const chatInput = document.getElementById("chat-input");
+      const chatForm = document.getElementById("chat-input-area");
+      const chatMessages = document.getElementById("chat-messages");
+      const modelSelect = document.getElementById("model-select");
+      const comparisonToggle = document.getElementById("comparison-toggle");
+      const comparisonContainer = document.getElementById("comparison-container");
+      const chatgptResponseBox = document.querySelector("#chatgpt-response .response-content");
+      const geminiResponseBox = document.querySelector("#gemini-response .response-content");
+
+      let chatHistory = [];
+      let compareResponses = false;
+
+      // Utility to add message to chat
+      function addMessage(text, sender = "bot") {
+        const msgDiv = document.createElement("div");
+        msgDiv.className = `message ${sender}`;
+        msgDiv.textContent = text;
+        chatMessages.appendChild(msgDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+
+      // Simulated API calls (replace with real backend calls)
+      function fetchChatGPTResponse(question, history) {
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            resolve(`(ChatGPT) Response to: "${question}"`);
+          }, 1200);
+        });
+      }
+
+      function fetchGeminiResponse(question, history) {
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            resolve(`(Gemini) Response to: "${question}"`);
+          }, 1300);
+        });
+      }
+
+      // Smart model selection logic (simple demo)
+      function selectModel(question) {
+        const lower = question.toLowerCase();
+        if (lower.includes("code") || lower.includes("program")) return "chatgpt";
+        if (lower.includes("google") || lower.includes("maps") || lower.includes("search")) return "gemini";
+        return "auto";
+      }
+
+      // Handle form submit
+      chatForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const question = chatInput.value.trim();
+        if (!question) return;
+
+        addMessage(question, "user");
+        chatInput.value = "";
+        chatInput.disabled = true;
+
+        chatHistory.push({ role: "user", content: question });
+
+        let model = modelSelect.value;
+        if (model === "auto") {
+          model = selectModel(question);
+        }
+
+        if (compareResponses) {
+          // Fetch both responses and show side by side
+          chatgptResponseBox.textContent = "Loading...";
+          geminiResponseBox.textContent = "Loading...";
+          comparisonContainer.classList.remove("hidden");
+
+          const [chatgptResp, geminiResp] = await Promise.all([
+            fetchChatGPTResponse(question, chatHistory),
+            fetchGeminiResponse(question, chatHistory),
+          ]);
+
+          chatgptResponseBox.textContent = chatgptResp;
+          geminiResponseBox.textContent = geminiResp;
+
+          // Also add combined message to main chat for accessibility
+          addMessage(`ChatGPT: ${chatgptResp}\n\nGemini: ${geminiResp}`, "bot");
+        } else {
+          comparisonContainer.classList.add("hidden");
+          let responseText = "";
+          if (model === "chatgpt") {
+            responseText = await fetchChatGPTResponse(question, chatHistory);
+          } else if (model === "gemini") {
+            responseText = await fetchGeminiResponse(question, chatHistory);
+          }
+          addMessage(responseText, "bot");
+        }
+
+        chatInput.disabled = false;
+        chatInput.focus();
+      });
+
+      // Toggle comparison mode
+      comparisonToggle.addEventListener("click", () => {
+        compareResponses = !compareResponses;
+        comparisonToggle.setAttribute("aria-pressed", compareResponses.toString());
+        comparisonToggle.textContent = compareResponses ? "Hide Comparison" : "Compare Responses";
+        if (!compareResponses) {
+          comparisonContainer.classList.add("hidden");
+        }
+      });
+
+      // Accessibility: allow toggle with keyboard
+      comparisonToggle.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          comparisonToggle.click();
+        }
+      });
+
+      // Focus chat input on page load
+      chatInput.focus();
+    });
+  </script>
+</body>
+</html>

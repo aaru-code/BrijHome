@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>Onu AI Assistant - Live GPT-4 Integration</title>
+  <style>
+    /* Reset and base styles */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #2c3e50 0%, #4ca1af 100%);
+      color: #f0f4f8;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 10px;
+    }
+    #app {
+      background: rgba(20, 25, 40, 0.9);
+      width: 100%;
+      max-width: 700px;
+      height: 650px;
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 0 40px #1690e6aa;
+      backdrop-filter: saturate(180%) blur(20px);
+      border: 2px solid #1690e6;
+      user-select: none;
+    }
+    header {
+      background: #0e1a2bcc;
+      padding: 16px 25px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #1c334d;
+      position: relative;
+      z-index: 2;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+      font-weight: 900;
+      letter-spacing: 3px;
+      color: #7fffd4;
+      text-shadow: 0 0 10px #00fff7;
+      text-transform: uppercase;
+      font-family: 'Orbitron', sans-serif;
+    }
+    header button {
+      background: #1690e6;
+      color: white;
+      border: none;
+      border-radius: 18px;
+      padding: 10px 22px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 0 15px #1690e6aa;
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+    header button:hover {
+      background: #00ffff;
+      color: #003333;
+      box-shadow: 0 0 25px #00ffffcc;
+    }
+
+    main {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+      gap: 15px;
+      padding: 15px 25px;
+      user-select: text;
+    }
+    #chat-container {
+      flex: 1.8;
+      background: #1b2a43cc;
+      border-radius: 18px;
+      display: flex;
+      flex-direction: column;
+      max-height: 100%;
+      box-shadow: inset 0 0 20px #003f5caa;
+      overflow: hidden;
+      position: relative;
+    }
+    #chat-history {
+      flex: 1;
+      overflow-y: auto;
+      padding: 15px 15px 15px 30px;
+      scrollbar-width: thin;
+      scrollbar-color: #004466 #112233;
+    }
+    #chat-history::-webkit-scrollbar {
+      width: 10px;
+    }
+    #chat-history::-webkit-scrollbar-track {
+      background: #112233;
+      border-radius: 8px;
+    }
+    #chat-history::-webkit-scrollbar-thumb {
+      background-color: #007accaa;
+      border-radius: 8px;
+    }
+
+    .message {
+      margin-bottom: 16px;
+      padding: 12px 18px;
+      border-radius: 25px;
+      max-width: 80%;
+      line-height: 1.3;
+      font-size: 1rem;
+      word-wrap: break-word;
+      box-shadow: 0 0 5px #0006;
+      position: relative;
+      white-space: pre-wrap;
+      letter-spacing: 0.05em;
+    }
+    .user-msg {
+      background: linear-gradient(145deg, #2980b9, #1f456a);
+      color: #e1f5fe;
+      align-self: flex-end;
+      border-bottom-right-radius: 5px;
+      font-weight: 600;
+      box-shadow: 0 4px 6px #14658aaa;
+    }
+    .gpt-msg {
+      background: linear-gradient(145deg, #82caff, #1f3c6a);
+      color: #042a3c;
+      align-self: flex-start;
+      border-bottom-left-radius: 5px;
+      font-weight: 700;
+      font-family: 'Segoe UI Semibold', sans-serif;
+      box-shadow: 0 4px 8px #14385fcc;
+    }
+    .gemini-msg {
+      background: linear-gradient(145deg, #7fffd4, #257a6f);
+      color: #053833;
+      align-self: flex-start;
+      border-bottom-left-radius: 5px;
+      font-style: italic;
+      font-weight: 600;
+      box-shadow: 0 4px 8px #1a60522e;
+    }
+    .system-msg {
+      color: #fce181;
+      font-style: italic;
+      text-align: center;
+      font-weight: 700;
+      margin-bottom: 18px;
+      user-select: none;
+    }
+
+    #input-area {
+      display: flex;
+      gap: 12px;
+      padding: 15px 25px;
+      background: #123456dd;
+      border-top: 1px solid #0f2641;
+    }
+    #user-input {
+      flex: 1;
+      padding: 14px 18px;
+      border-radius: 30px;
+      border: none;
+      font-size: 1.1rem;
+      outline: none;
+      background: #29587a;
+      color: #e0f7fa;
+      letter-spacing: 0.03em;
+      box-shadow: inset 0 0 10px #1f8ecfaa;
+      transition: background-color 0.3s ease;
+    }
+    #user-input::placeholder {
+      color: #a1d0d8cc;
+      font-style: italic;
+    }
+    #user-input:focus {
+      background: #1d4058;
+      box-shadow: inset 0 0 15px #2bc0ffcc;
+    }
+    #send-btn, #voice-btn {
+      background: #16c79a;
+      border: none;
+      border-radius: 30px;
+      padding: 0 22px;
+      color: #042a3c;
+      font-weight: 800;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 0 20px #16c79a88;
+      user-select: none;
+      transition: background-color 0.25s ease, box-shadow 0.4s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 42px;
+      min-height: 42px;
+      position: relative;
+    }
+    #send-btn:disabled, #voice-btn:disabled {
+      background: #12715b88;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+    #send-btn:hover:not(:disabled) {
+      background: #00f3bb;
+      box-shadow: 0 0 35px #00f3bbdd;
+    }
+    #voice-btn {
+      background: #f54242;
+      color: #fff;
+      font-size: 1.25rem;
+    }
+    #voice-btn.listening {
+      background: #42f554;
+      color: #003300;
+      animation: pulse 1.6s infinite ease-in-out;
+      box-shadow: 0 0 30px 8px #42f554aa;
+    }
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 30px 8px #42f554aa;
+      }
+      50% {
+        transform: scale(1.1);
+        box-shadow: 0 0 45px 14px #4ff961cc;
+      }
+    }
+
+    #response-container {
+      flex: 1;
+      background: #0d1e2ecc;
+      border-radius: 18px;
+      display: flex;
+      flex-direction: column;
+      max-height: 100%;
+      overflow-y: auto;
+      padding: 15px 20px;
+      box-shadow: inset 0 0 15px #04305caa;
+    }
+    #response-container h2 {
+      margin: 0 0 18px 0;
+      font-weight: 700;
+      font-size: 1.5rem;
+      letter-spacing: 1.6px;
+      color: #3ffbd0;
+      text-shadow: 0 0 12px #12c3aaee;
+      font-family: 'Orbitron', sans-serif;
+      user-select: none;
+    }
+    .response-box {
+      background: #12354a;
+      border-radius: 14px;
+      margin-bottom: 20px;
+      padding: 14px 18px;
+      font-size: 1.05rem;
+      line-height: 1.4;
+      white-space: pre-wrap;
+      color: #cefaf9;
+      flex-grow: 1;
+      box-shadow: inset 0 0 12px #00ffc4bb;
+      min-height: 70px;
+      font-weight: 600;
+      overflow-y: auto;
+    }
+    .response-box.gpt {
+      border-left: 6px solid #42beff;
+      font-family: 'Segoe UI Bold', sans-serif;
+    }
+    .response-box.gemini {
+      border-left: 6px solid #00ffcb;
+      font-style: italic;
+    }
+
+    /* Avatar and branding */
+    #onu-avatar {
+      position: absolute;
+      bottom: 15px;
+      left: 15px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 3px solid #16c79a;
+      box-shadow: 0 0 12px #16c79aaa;
+      cursor: default;
+      user-select: none;
+      background: url('https://images.unsplash.com/photo-1517511620798-cec17d428bc0?ixlib=rb-4.0.3&auto=format&fit=crop&w=80&q=80') center/cover no-repeat;
+      transition: box-shadow 0.3s ease;
+      z-index: 10;
+    }
+    #onu-avatar:hover {
+      box-shadow: 0 0 22px 6px #16c79acc;
+    }
+
+    /* Modal styling */
+    #auth-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      user-select: none;
+    }
+    #auth-modal.active {
+      display: flex;
+      user-select: none;
+    }
+    #auth-box {
+      background: #0f2a4d;
+      border-radius: 20px;
+      width: 380px;
+      padding: 25px 30px;
+      box-shadow: 0 0 30px rgba(22, 96, 160, 0.85);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      user-select: none;
+      position: relative;
+    }
+    #auth-box h3 {
+      margin: 0;
+      font-weight: 900;
+      font-size: 1.7rem;
+      color: #3ffbd0;
+      font-family: 'Orbitron', sans-serif;
+      user-select: none;
+    }
+    #auth-box input {
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: none;
+      outline: none;
+      font-size: 1.1rem;
+      background: #12354a;
+      color: #cefaf9;
+      letter-spacing: 0.02em;
+      font-weight: 600;
+      box-shadow: inset 0 0 15px #00ffc4bb;
+    }
+    #auth-box input::placeholder {
+      color: #81d4faaa;
+      font-style: italic;
+    }
+    #auth-box button {
+      background: #16c79a;
+      border: none;
+      border-radius: 30px;
+      padding: 14px 0;
+      font-weight: 900;
+      font-size: 1.2rem;
+      color: #042a3c;
+      cursor: pointer;
+      box-shadow: 0 0 30px #16c79aaa;
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+    #auth-box button:hover:not(:disabled) {
+      background: #00f3bb;
+      box-shadow: 0 0 45px #00f3bbcc;
+    }
+    #auth-close {
+      cursor: pointer;
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      font-weight: 700;
+      font-size: 2rem;
+      color: #3ffbd0;
+      user-select: none;
+      background: transparent;
+      border: none;
+      transition: color 0.3s ease;
+    }
+    #auth-close:hover {
+      color: #07f6d7;
+    }
+    #auth-box small {
+      color: #a1f0e8aa;
+      font-style: italic;
+      font-weight: 600;
+      user-select: none;
+    }
+
+    /* Responsive for smaller devices */
+    @media (max-width: 480px) {
+      #app {
+        max-width: 100%;
+        height: 100vh;
+        border-radius: 0;
+      }
+      main {
+        flex-direction: column;
+        padding: 15px 15px 15px 15px;
+      }
+      #chat-container {
+        flex: none;
+        height: 57vh;
+        border-radius: 0 0 18px 18px;
+        max-height: 57vh;
+      }
+      #response-container {
+        height: 35vh;
+        max-height: 35vh;
+        flex: none;
+        border-radius: 18px 18px 0 0;
+        margin-top: 10px;
+      }
+      #chat-history {
+        max-height: 100%;
+        padding: 15px 10px 15px 25px;
+      }
+      #input-area {
+        padding: 15px 10px;
+      }
+    }
+  </style>
+  <!-- Orbitron font for futuristic branding -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div id="app" role="main" aria-label="Onu AI assistant chat application">
+    <header>
+      <h1>Onu</h1>
+      <button id="login-btn" aria-haspopup="dialog" aria-controls="auth-modal">Login</button>
+    </header>
+    <main>
+      <section id="chat-container" aria-live="polite" aria-label="Chat conversation area">
+        <div id="chat-history" tabindex="0"></div>
+        <div id="input-area">
+          <input id="user-input" type="text" placeholder="Type your message here..." aria-label="Message input" autocomplete="off" disabled />
+          <button id="send-btn" aria-label="Send message" disabled>
+            &#9658;
+          </button>
+          <button id="voice-btn" aria-label="Start voice input" disabled title="Toggle voice input">&#127908;</button>
+        </div>
+        <div id="onu-avatar" aria-hidden="true" title="Onu AI Assistant"></div>
+      </section>
+      <aside id="response-container" aria-label="AI Responses">
+        <h2>Onu's Responses</h2>
+        <div id="gpt-response" class="response-box gpt" aria-live="polite" aria-atomic="true"></div>
+        <div id="gemini-response" class="response-box gemini" aria-live="polite" aria-atomic="true"></div>
+      </aside>
+    </main>
+  </div>
+
+  <div id="auth-modal" role="dialog" aria-modal="true" aria-labelledby="auth-title" tabindex="-1">
+    <div id="auth-box">
+      <button id="auth-close" aria-label="Close login dialog">&times;</button>
+      <h3 id="auth-title">Login to Onu AI</h3>
+      <input id="email-input" type="email" placeholder="Enter your email" aria-label="Email address" autocomplete="email" />
+      <button id="email-login-btn" disabled>Login with Email</button>
+      <button id="google-login-btn">Login with Google</button>
+      <small>Authentication is simulated for demo purposes.</small>
+    </div>
+  </div>
+
+  <script>
+    // Setup and Variables
+    const loginBtn = document.getElementById('login-btn');
+    const authModal = document.getElementById('auth-modal');
+    const authClose = document.getElementById('auth-close');
+    const emailInput = document.getElementById('email-input');
+    const emailLoginBtn = document.getElementById('email-login-btn');
+    const googleLoginBtn = document.getElementById('google-login-btn');
+    const userInput = document.getElementById('user-input');
+    const sendBtn = document.getElementById('send-btn');
+    const voiceBtn = document.getElementById('voice-btn');
+    const chatHistory = document.getElementById('chat-history');
+    const gptResponseBox = document.getElementById('gpt-response');
+    const geminiResponseBox = document.getElementById('gemini-response');
+
+    let session = {
+      authenticated: false,
+      userEmail: null,
+      chatHistory: [],
+      apiKey: null,
+      messages: [], // For conversation memory OpenAI
+    };
+
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const recognition = SpeechRecognition ? new SpeechRecognition() : null;
+    if (recognition) {
+      recognition.lang = 'en-US';
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+    }
+
+    let listening = false;
+    const synth = window.speechSynthesis;
+
+    // Auth handlers
+    loginBtn.onclick = () => {
+      authModal.classList.add('active');
+      authModal.focus();
+      emailInput.focus();
+    };
+
+    authClose.onclick = closeAuthModal;
+    authModal.addEventListener('click', e => {
+      if (e.target === authModal) closeAuthModal();
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && authModal.classList.contains('active')) {
+        closeAuthModal();
+      }
+    });
+
+    function closeAuthModal() {
+      authModal.classList.remove('active');
+      loginBtn.focus();
+    }
+
+    emailInput.oninput = () => {
+      const emailVal = emailInput.value.trim();
+      emailLoginBtn.disabled = !validateEmail(emailVal);
+    };
+    emailLoginBtn.onclick = () => {
+      const emailVal = emailInput.value.trim();
+      if (!validateEmail(emailVal)) return;
+      askApiKeyThenLogin(emailVal);
+    };
+    googleLoginBtn.onclick = () => {
+      // Simulate Google login but ask for API key
+      askApiKeyThenLogin('googleuser@example.com');
+    };
+
+    // Validate email format
+    function validateEmail(email) {
+      const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return regex.test(email);
+    }
+
+    // Ask user for OpenAI API key securely
+    async function askApiKeyThenLogin(email) {
+      const key = prompt("Please enter your OpenAI API key to enable Onu AI (never stored):");
+      if (!key || key.trim().length < 20) {
+        alert("Invalid API key. Login cancelled.");
+        return;
+      }
+      session.apiKey = key.trim();
+      session.authenticated = true;
+      session.userEmail = email;
+      loginBtn.textContent = email;
+      closeAuthModal();
+      enableChat();
+      appendSystemMessage("You are logged in. Start chatting with Onu.");
+    }
+
+    function enableChat() {
+      userInput.disabled = false;
+      voiceBtn.disabled = false;
+      sendBtn.disabled = true;
+      userInput.focus();
+    }
+
+    // Input Events
+    userInput.addEventListener('input', () => {
+      sendBtn.disabled = !userInput.value.trim() || !session.authenticated;
+    });
+
+    sendBtn.addEventListener('click', () => {
+      handleUserMessage(userInput.value.trim());
+    });
+
+    userInput.addEventListener('keydown', e => {
+      if (e.key === 'Enter' && !sendBtn.disabled) {
+        e.preventDefault();
+        handleUserMessage(userInput.value.trim());
+      }
+    });
+
+    // Voice Button toggling recognition
+    voiceBtn.addEventListener('click', () => {
+      if (!recognition) {
+        alert('Your browser does not support speech recognition.');
+        return;
+      }
+      if (listening) {
+        stopListening();
+      } else {
+        startListening();
+      }
+    });
+
+    function startListening() {
+      try {
+        recognition.start();
+        listening = true;
+        voiceBtn.classList.add('listening');
+        voiceBtn.setAttribute('aria-label', 'Stop voice input');
+        voiceBtn.title = 'Stop voice input';
+      } catch (e) {
+        console.warn(e);
+      }
+    }
+    function stopListening() {
+      try {
+        recognition.stop();
+      } catch { }
+      listening = false;
+      voiceBtn.classList.remove('listening');
+      voiceBtn.setAttribute('aria-label', 'Start voice input');
+      voiceBtn.title = 'Toggle voice input';
+      userInput.focus();
+    }
+
+    recognition?.addEventListener('result', (event) => {
+      const speechToText = event.results[0][0].transcript.trim();
+      if (speechToText) {
+        appendMessage('user', speechToText);
+        processOnuTrigger(speechToText);
+        handleUserMessage(speechToText);
+      }
+    });
+    recognition?.addEventListener('speechend', () => {
+      stopListening();
+    });
+    recognition?.addEventListener('error', (e) => {
+      console.error('Speech recognition error:', e.error);
+      stopListening();
+    });
+
+    // Append messages display
+    function appendMessage(role, text) {
+      if (!text) return;
+      session.chatHistory.push({ role, text });
+      const div = document.createElement('div');
+      div.textContent = text;
+      div.classList.add('message');
+      if (role === 'user') div.classList.add('user-msg');
+      else if (role === 'gpt') div.classList.add('gpt-msg');
+      else if (role === 'gemini') div.classList.add('gemini-msg');
+      else div.classList.add('system-msg');
+      chatHistory.appendChild(div);
+      chatHistory.scrollTop = chatHistory.scrollHeight;
+    }
+
+    let sysMsgElem = null;
+    function appendSystemMessage(text) {
+      if (!sysMsgElem) {
+        sysMsgElem = document.createElement('div');
+        sysMsgElem.classList.add('system-msg');
+        chatHistory.appendChild(sysMsgElem);
+      }
+      sysMsgElem.textContent = text;
+      chatHistory.scrollTop = chatHistory.scrollHeight;
+    }
+    function removeSystemMessage() {
+      if (sysMsgElem) {
+        sysMsgElem.remove();
+        sysMsgElem = null;
+      }
+    }
+
+    function updateSideResponses(gptText, geminiText) {
+      gptResponseBox.textContent = gptText;
+      geminiResponseBox.textContent = geminiText;
+    }
+
+    // Detect Hindi script presence for choosing lang
+    function detectHindi(text) {
+      return /[\u0900-\u097F]/.test(text);
+    }
+
+    function speakResponse(lang, text) {
+      if (!('speechSynthesis' in window)) return;
+      if (synth.speaking) {
+        synth.cancel();
+      }
+      const utter = new SpeechSynthesisUtterance();
+      utter.text = text;
+      utter.lang = lang;
+      // Choose voice
+      const voices = synth.getVoices();
+      if (voices.length) {
+        const voice = voices.find(v => v.lang.startsWith(lang)) || voices[0];
+        if (voice) utter.voice = voice;
+      }
+      synth.speak(utter);
+    }
+
+    async function handleUserMessage(message) {
+      if (!session.authenticated) {
+        appendSystemMessage("Please login with your OpenAI API key to chat.");
+        return;
+      }
+      if (!message) return;
+      appendMessage('user', message);
+      userInput.value = '';
+      sendBtn.disabled = true;
+
+      // Add to messages for memory
+      session.messages.push({ role: 'user', content: message });
+
+      // Check trigger for Onu name for later (we respond anyway here)
+      processOnuTrigger(message);
+
+      appendSystemMessage('Onu is thinking...');
+
+      try {
+        const isHindi = detectHindi(message);
+        // Call OpenAI ChatCompletion API
+        const gptResponse = await fetchOpenAIResponse(session.apiKey, session.messages);
+
+        removeSystemMessage();
+
+        // Show GPT response in chat & side panel (the "Onu's answer")
+        appendMessage('gpt', gptResponse);
+
+        updateSideResponses(gptResponse, "Gemini AI not available (mocked)");
+
+        // Add AI response to messages memory
+        session.messages.push({ role: 'assistant', content: gptResponse });
+
+        // Voice speak response (Hindi if detected)
+        speakResponse(isHindi ? "hi-IN" : "en-US", gptResponse);
+
+      } catch (err) {
+        removeSystemMessage();
+        console.error(err);
+        appendSystemMessage("Error communicating with AI: " + err.message);
+      }
+    }
+
+    // Onu name trigger: if user says "Onu", auto respond is already handled in handleUserMessage called from voice + text input
+    // We do a light notification only here
+    function processOnuTrigger(text){
+      if (text && text.toLowerCase().includes("onu")) {
+        // subtle system message, no double-response needed because handleUserMessage always responds
+        appendSystemMessage("You called Onu! Wait for response...");
+        setTimeout(() => {
+          removeSystemMessage();
+        }, 2000);
+      }
+    }
+
+    // Call OpenAI API chat completions
+    async function fetchOpenAIResponse(apiKey, messages) {
+      // Keep only last 15 messages for token limit safety
+      const recentMessages = messages.slice(-15);
+      const payload = {
+        model: "gpt-4",
+        messages: recentMessages,
+        temperature: 0.7
+      };
+      const response = await fetch("https://api.openai.com/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${apiKey}`,
+        },
+        body: JSON.stringify(payload),
+      });
+      if (!response.ok) {
+        throw new Error(`OpenAI API error: ${response.status} ${response.statusText}`);
+      }
+      const data = await response.json();
+      if(!data.choices || !data.choices[0] || !data.choices[0].message) {
+        throw new Error("Invalid API response");
+      }
+      return data.choices[0].message.content.trim();
+    }
+
+    // Initialize UI state
+    userInput.disabled = true;
+    sendBtn.disabled = true;
+    voiceBtn.disabled = true;
+
+  </script>
+</body>
+</html>
+</content>
+</create_file>

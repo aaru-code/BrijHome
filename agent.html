@@ -1,0 +1,440 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   Our Agents - BrijHome
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;display=swap" rel="stylesheet"/>
+  <style>
+   body {
+      font-family: "Inter", sans-serif;
+    }
+   /* Custom scrollbar for agent cards container */
+   .scrollbar-thin::-webkit-scrollbar {
+     height: 6px;
+   }
+   .scrollbar-thin::-webkit-scrollbar-thumb {
+     background-color: #ec4899; /* pink-400 */
+     border-radius: 3px;
+   }
+  </style>
+ </head>
+ <body class="bg-white text-gray-900 flex flex-col min-h-screen">
+  <header class="fixed top-0 left-0 right-0 bg-white z-40 shadow-sm">
+   <nav class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+    <div class="font-extrabold text-lg select-none">
+     BrijHome
+    </div>
+    <ul class="hidden md:flex space-x-10 text-base font-normal">
+     <li>
+      <a class="text-black hover:text-pink-400" href="index.html">
+       Home
+      </a>
+     </li>
+     <li>
+      <a class="text-black hover:text-pink-400" href="about.html">
+       About
+      </a>
+     </li>
+     <li>
+      <a aria-current="page" class="text-pink-400 hover:text-pink-400" href="/agent.html">
+       Agent
+      </a>
+     </li>
+     <li>
+      <a class="text-black hover:text-pink-400" href="/service.html">
+       Services
+      </a>
+     </li>
+     <li>
+      <a class="text-black hover:text-pink-400" href="/properties.html">
+       Properties
+      </a>
+     </li>
+     <li>
+      <a class="text-black hover:text-pink-400" href="/blog.html">
+       Blog
+      </a>
+     </li>
+     <li>
+      <a class="text-black hover:text-pink-400" href="/contact.html">
+       Contact
+      </a>
+     </li>
+    </ul>
+   </nav>
+  </header>
+  <main class="pt-24 max-w-7xl mx-auto px-6 flex-grow space-y-20">
+   <!-- Intro Section -->
+   <section class="max-w-4xl mx-auto text-center space-y-6">
+    <h1 class="text-4xl font-extrabold">
+     Why Work with Our Agents?
+    </h1>
+    <p class="text-lg text-gray-700">
+     Our team goes the extra mile to ensure you get the best deal. From expert negotiation and legal help to deep local knowledge, we’re here to make your property journey smooth and successful.
+    </p>
+    <video aria-label="Intro video about BrijHome agents" class="mx-auto rounded-lg shadow-md w-full max-w-xl" controls="" preload="metadata" src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm">
+     Your browser does not support the video tag.
+    </video>
+   </section>
+   <!-- Agent Specialization Filter -->
+   <section class="max-w-5xl mx-auto">
+    <h2 class="text-3xl font-bold mb-6 text-center">
+     Find Agents by Specialization
+    </h2>
+    <div class="flex flex-wrap justify-center gap-4 mb-12" id="specialization-filters">
+     <button class="specialization-btn bg-pink-400 text-white rounded-full px-5 py-2 font-semibold hover:bg-pink-500 transition" data-specialization="all" type="button">
+      All
+     </button>
+     <button class="specialization-btn bg-gray-200 text-gray-700 rounded-full px-5 py-2 font-semibold hover:bg-pink-400 hover:text-white transition" data-specialization="Luxury Homes" type="button">
+      Luxury Homes
+     </button>
+     <button class="specialization-btn bg-gray-200 text-gray-700 rounded-full px-5 py-2 font-semibold hover:bg-pink-400 hover:text-white transition" data-specialization="First-Time Buyers" type="button">
+      First-Time Buyers
+     </button>
+     <button class="specialization-btn bg-gray-200 text-gray-700 rounded-full px-5 py-2 font-semibold hover:bg-pink-400 hover:text-white transition" data-specialization="Commercial Spaces" type="button">
+      Commercial Spaces
+     </button>
+     <button class="specialization-btn bg-gray-200 text-gray-700 rounded-full px-5 py-2 font-semibold hover:bg-pink-400 hover:text-white transition" data-specialization="Rental Expert" type="button">
+      Rental Expert
+     </button>
+    </div>
+   </section>
+   <!-- Agents Grid -->
+   <section class="max-w-7xl mx-auto">
+    <h2 class="text-3xl font-bold mb-8 text-center">
+     Meet Our Agents
+    </h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10" id="agents-container">
+     <!-- Agent Card Template -->
+     <article class="bg-white rounded-xl shadow-lg p-6 flex flex-col hover:shadow-2xl transition relative group" data-specializations="Luxury Homes,First-Time Buyers" tabindex="0">
+      <img alt="Photo of agent Arjun Singh smiling" class="rounded-full w-32 h-32 object-cover mx-auto mb-4" height="128" src="https://storage.googleapis.com/a1aa/image/agent1.jpg" width="128"/>
+      <h3 class="text-xl font-semibold text-center">
+       Arjun Singh
+      </h3>
+      <p class="text-pink-400 text-center mb-2 font-semibold">
+       Senior Property Advisor
+      </p>
+      <p class="text-center text-gray-600 mb-4">
+       Specializes in Luxury Homes &amp; First-Time Buyers
+      </p>
+      <ul class="flex justify-center space-x-6 text-gray-700 mb-4 text-sm">
+       <li>
+        <strong>120+</strong> sales closed
+       </li>
+       <li>
+        <strong>98%</strong> client satisfaction
+       </li>
+       <li>
+        Response time: <strong>under 5 mins</strong>
+       </li>
+      </ul>
+      <div class="space-y-3 mb-4">
+       <blockquote class="italic text-gray-700 text-center">
+        "Arjun helped us find our dream home quickly and made the process stress-free."
+       </blockquote>
+       <footer class="text-sm font-semibold text-gray-900 text-center">
+        - Priya M.
+       </footer>
+      </div>
+      <div class="flex justify-center space-x-4 mt-auto">
+       <a aria-label="Call Arjun Singh" class="text-pink-400 hover:text-pink-600 text-xl" href="tel:+911234567890">
+        <i class="fas fa-phone-alt">
+        </i>
+       </a>
+       <a aria-label="WhatsApp Arjun Singh" class="text-pink-400 hover:text-pink-600 text-xl" href="https://wa.me/911234567890" rel="noopener noreferrer" target="_blank">
+        <i class="fab fa-whatsapp">
+        </i>
+       </a>
+       <a aria-label="Email Arjun Singh" class="text-pink-400 hover:text-pink-600 text-xl" href="mailto:arjun.singh@brijhome.com">
+        <i class="fas fa-envelope">
+        </i>
+       </a>
+       <a aria-label="Book consultation with Arjun Singh" class="text-pink-400 hover:text-pink-600 text-xl" href="https://calendly.com/arjun-brijhome" rel="noopener noreferrer" target="_blank">
+        <i class="fas fa-calendar-alt">
+        </i>
+       </a>
+      </div>
+      <div class="absolute inset-0 bg-white bg-opacity-95 opacity-0 group-hover:opacity-100 transition p-6 rounded-xl flex flex-col justify-center items-center text-center space-y-4 pointer-events-none group-hover:pointer-events-auto">
+       <h4 class="text-lg font-bold">About Arjun</h4>
+       <p class="text-gray-700 text-sm max-w-xs">
+        With 12 years of experience, Arjun is your go-to expert for luxury homes and first-time buyers in Mumbai.
+       </p>
+       <div class="flex justify-center space-x-4 text-pink-400 text-xl">
+        <a aria-label="Arjun Singh Facebook" href="https://facebook.com/arjun.singh" rel="noopener noreferrer" target="_blank" class="hover:text-pink-600">
+         <i class="fab fa-facebook-f">
+         </i>
+        </a>
+        <a aria-label="Arjun Singh Instagram" href="https://instagram.com/arjun.singh" rel="noopener noreferrer" target="_blank" class="hover:text-pink-600">
+         <i class="fab fa-instagram">
+         </i>
+        </a>
+        <a aria-label="Arjun Singh Twitter" href="https://twitter.com/arjun_singh" rel="noopener noreferrer" target="_blank" class="hover:text-pink-600">
+         <i class="fab fa-twitter">
+         </i>
+        </a>
+       </div>
+      </div>
+     </article>
+     <article class="bg-white rounded-xl shadow-lg p-6 flex flex-col hover:shadow-2xl transition relative group" data-specializations="Commercial Spaces" tabindex="0">
+      <img alt="Photo of agent Neha Patel smiling" class="rounded-full w-32 h-32 object-cover mx-auto mb-4" height="128" src="https://storage.googleapis.com/a1aa/image/agent2.jpg" width="128"/>
+      <h3 class="text-xl font-semibold text-center">
+       Neha Patel
+      </h3>
+      <p class="text-pink-400 text-center mb-2 font-semibold">
+       Commercial Property Specialist
+      </p>
+      <p class="text-center text-gray-600 mb-4">
+       Expert in commercial spaces and office leasing
+      </p>
+      <ul class="flex justify-center space-x-6 text-gray-700 mb-4 text-sm">
+       <li>
+        <strong>90+</strong> sales closed
+       </li>
+       <li>
+        <strong>95%</strong> client satisfaction
+       </li>
+       <li>
+        Response time: <strong>under 10 mins</strong>
+       </li>
+      </ul>
+      <div class="space-y-3 mb-4">
+       <blockquote class="italic text-gray-700 text-center">
+        "Neha’s expertise helped us find the perfect office space for our startup."
+       </blockquote>
+       <footer class="text-sm font-semibold text-gray-900 text-center">
+        - Rajiv K.
+       </footer>
+      </div>
+      <div class="flex justify-center space-x-4 mt-auto">
+       <a aria-label="Call Neha Patel" class="text-pink-400 hover:text-pink-600 text-xl" href="tel:+919876543210">
+        <i class="fas fa-phone-alt">
+        </i>
+       </a>
+       <a aria-label="WhatsApp Neha Patel" class="text-pink-400 hover:text-pink-600 text-xl" href="https://wa.me/919876543210" rel="noopener noreferrer" target="_blank">
+        <i class="fab fa-whatsapp">
+        </i>
+       </a>
+       <a aria-label="Email Neha Patel" class="text-pink-400 hover:text-pink-600 text-xl" href="mailto:neha.patel@brijhome.com">
+        <i class="fas fa-envelope">
+        </i>
+       </a>
+       <a aria-label="Book consultation with Neha Patel" class="text-pink-400 hover:text-pink-600 text-xl" href="https://calendly.com/neha-brijhome" rel="noopener noreferrer" target="_blank">
+        <i class="fas fa-calendar-alt">
+        </i>
+       </a>
+      </div>
+      <div class="absolute inset-0 bg-white bg-opacity-95 opacity-0 group-hover:opacity-100 transition p-6 rounded-xl flex flex-col justify-center items-center text-center space-y-4 pointer-events-none group-hover:pointer-events-auto">
+       <h4 class="text-lg font-bold">About Neha</h4>
+       <p class="text-gray-700 text-sm max-w-xs">
+        Neha has 8 years of experience specializing in commercial properties and office leasing in Mumbai.
+       </p>
+       <div class="flex justify-center space-x-4 text-pink-400 text-xl">
+        <a aria-label="Neha Patel Facebook" href="https://facebook.com/neha.patel" rel="noopener noreferrer" target="_blank" class="hover:text-pink-600">
+         <i class="fab fa-facebook-f">
+         </i>
+        </a>
+        <a aria-label="Neha Patel Instagram" href="https://instagram.com/neha.patel" rel="noopener noreferrer" target="_blank" class="hover:text-pink-600">
+         <i class="fab fa-instagram">
+         </i>
+        </a>
+        <a aria-label="Neha Patel Twitter" href="https://twitter.com/neha_patel" rel="noopener noreferrer" target="_blank" class="hover:text-pink-600">
+         <i class="fab fa-twitter">
+         </i>
+        </a>
+       </div>
+      </div>
+     </article>
+     <article class="bg-white rounded-xl shadow-lg p-6 flex flex-col hover:shadow-2xl transition relative group" data-specializations="Rental Expert" tabindex="0">
+      <img alt="Photo of agent Rahul Sharma smiling" class="rounded-full w-32 h-32 object-cover mx-auto mb-4" height="128" src="https://storage.googleapis.com/a1aa/image/agent3.jpg" width="128"/>
+      <h3 class="text-xl font-semibold text-center">
+       Rahul Sharma
+      </h3>
+      <p class="text-pink-400 text-center mb-2 font-semibold">
+       Rental Expert
+      </p>
+      <p class="text-center text-gray-600 mb-4">
+       Specializes in rental properties and tenant relations
+      </p>
+      <ul class="flex justify-center space-x-6 text-gray-700 mb-4 text-sm">
+       <li>
+        <strong>150+</strong> rentals managed
+       </li>
+       <li>
+        <strong>97%</strong> client satisfaction
+       </li>
+       <li>
+        Response time: <strong>under 3 mins</strong>
+       </li>
+      </ul>
+      <div class="space-y-3 mb-4">
+       <blockquote class="italic text-gray-700 text-center">
+        "Rahul made renting a breeze and was always available to answer questions."
+       </blockquote>
+       <footer class="text-sm font-semibold text-gray-900 text-center">
+        - Anjali S.
+       </footer>
+      </div>
+      <div class="flex justify-center space-x-4 mt-auto">
+       <a aria-label="Call Rahul Sharma" class="text-pink-400 hover:text-pink-600 text-xl" href="tel:+919112223344">
+        <i class="fas fa-phone-alt">
+        </i>
+       </a>
+       <a aria-label="WhatsApp Rahul Sharma" class="text-pink-400 hover:text-pink-600 text-xl" href="https://wa.me/919112223344" rel="noopener noreferrer" target="_blank">
+        <i class="fab fa-whatsapp">
+        </i>
+       </a>
+       <a aria-label="Email Rahul Sharma" class="text-pink-400 hover:text-pink-600 text-xl" href="mailto:rahul.sharma@brijhome.com">
+        <i class="fas fa-envelope">
+        </i>
+       </a>
+       <a aria-label="Book consultation with Rahul Sharma" class="text-pink-400 hover:text-pink-600 text-xl" href="https://calendly.com/rahul-brijhome" rel="noopener noreferrer" target="_blank">
+        <i class="fas fa-calendar-alt">
+        </i>
+       </a>
+      </div>
+      <div class="absolute inset-0 bg-white bg-opacity-95 opacity-0 group-hover:opacity-100 transition p-6 rounded-xl flex flex-col justify-center items-center text-center space-y-4 pointer-events-none group-hover:pointer-events-auto">
+       <h4 class="text-lg font-bold">About Rahul</h4>
+       <p class="text-gray-700 text-sm max-w-xs">
+        Rahul has 7 years of experience managing rental properties and ensuring tenant satisfaction in Mumbai.
+       </p>
+       <div class="flex justify-center space-x-4 text-pink-400 text-xl">
+        <a aria-label="Rahul Sharma Facebook" href="https://facebook.com/rahul.sharma" rel="noopener noreferrer" target="_blank" class="hover:text-pink-600">
+         <i class="fab fa-facebook-f">
+         </i>
+        </a>
+        <a aria-label="Rahul Sharma Instagram" href="https://instagram.com/rahul.sharma" rel="noopener noreferrer" target="_blank" class="hover:text-pink-600">
+         <i class="fab fa-instagram">
+         </i>
+        </a>
+        <a aria-label="Rahul Sharma Twitter" href="https://twitter.com/rahul_sharma" rel="noopener noreferrer" target="_blank" class="hover:text-pink-600">
+         <i class="fab fa-twitter">
+         </i>
+        </a>
+       </div>
+      </div>
+     </article>
+    </div>
+   </section>
+   <!-- FAQ Section -->
+   <section class="max-w-4xl mx-auto px-6 mt-20">
+    <h2 class="text-3xl font-bold mb-8 text-center">
+     Frequently Asked Questions
+    </h2>
+    <div class="space-y-4">
+     <details class="border border-gray-300 rounded-lg p-4" open>
+      <summary class="font-semibold cursor-pointer select-none">
+       What can I ask my agent?
+      </summary>
+      <p class="mt-2 text-gray-700">
+       You can ask about property details, pricing, neighborhood insights, financing options, and the buying or renting process.
+      </p>
+     </details>
+     <details class="border border-gray-300 rounded-lg p-4">
+      <summary class="font-semibold cursor-pointer select-none">
+       What should I expect in a first meeting?
+      </summary>
+      <p class="mt-2 text-gray-700">
+       Expect a friendly discussion about your needs, budget, and preferences. Your agent will explain the process and answer your questions.
+      </p>
+     </details>
+     <details class="border border-gray-300 rounded-lg p-4">
+      <summary class="font-semibold cursor-pointer select-none">
+       How quickly can I schedule a consultation?
+      </summary>
+      <p class="mt-2 text-gray-700">
+       Most agents offer online booking and can schedule consultations within 24-48 hours.
+      </p>
+     </details>
+    </div>
+   </section>
+  </main>
+  <footer class="bg-white border-t border-gray-200 mt-20 py-8">
+   <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0">
+    <p class="text-gray-600 text-sm select-none">
+     © 2024 BrijHome. All rights reserved.
+    </p>
+    <div class="flex space-x-6">
+     <a aria-label="Facebook" class="text-gray-600 hover:text-pink-400 transition text-2xl" href="https://www.facebook.com" rel="noopener noreferrer" target="_blank">
+      <i class="fab fa-facebook-f">
+      </i>
+     </a>
+     <a aria-label="WhatsApp" class="text-gray-600 hover:text-pink-400 transition text-2xl" href="https://wa.me/" rel="noopener noreferrer" target="_blank">
+      <i class="fab fa-whatsapp">
+      </i>
+     </a>
+     <a aria-label="Instagram" class="text-gray-600 hover:text-pink-400 transition text-2xl" href="https://www.instagram.com" rel="noopener noreferrer" target="_blank">
+      <i class="fab fa-instagram">
+      </i>
+     </a>
+     <a aria-label="X (Twitter)" class="text-gray-600 hover:text-pink-400 transition text-2xl" href="https://twitter.com" rel="noopener noreferrer" target="_blank">
+      <i class="fab fa-twitter">
+      </i>
+     </a>
+    </div>
+   </div>
+  </footer>
+  <script>
+   document.addEventListener('DOMContentLoaded', () => {
+      const specializationButtons = document.querySelectorAll('.specialization-btn');
+      const agentsContainer = document.getElementById('agents-container');
+      const agents = Array.from(agentsContainer.children);
+
+      function filterAgents(specialization) {
+        if (specialization === 'all') {
+          agents.forEach(agent => (agent.style.display = 'flex'));
+        } else {
+          agents.forEach(agent => {
+            const specs = agent.getAttribute('data-specializations').split(',').map(s => s.trim());
+            if (specs.includes(specialization)) {
+              agent.style.display = 'flex';
+            } else {
+              agent.style.display = 'none';
+            }
+          });
+        }
+      }
+
+      specializationButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          // Remove active styles from all buttons
+          specializationButtons.forEach(btn => {
+            btn.classList.remove('bg-pink-400', 'text-white');
+            btn.classList.add('bg-gray-200', 'text-gray-700');
+          });
+          // Add active styles to clicked button
+          button.classList.add('bg-pink-400', 'text-white');
+          button.classList.remove('bg-gray-200', 'text-gray-700');
+
+          filterAgents(button.getAttribute('data-specialization'));
+        });
+      });
+
+      // Accessibility: allow keyboard toggle of agent card info overlay
+      const agentCards = document.querySelectorAll('#agents-container article');
+      agentCards.forEach(card => {
+        card.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            const overlay = card.querySelector('div.absolute');
+            if (overlay.style.opacity === '1' || overlay.style.opacity === '100') {
+              overlay.style.opacity = '0';
+              overlay.style.pointerEvents = 'none';
+            } else {
+              overlay.style.opacity = '1';
+              overlay.style.pointerEvents = 'auto';
+            }
+          }
+        });
+      });
+
+      // Initialize filter to show all agents
+      filterAgents('all');
+    });
+  </script>
+ </body>
+</html>
